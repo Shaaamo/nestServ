@@ -5,7 +5,8 @@ import { existsSync } from 'fs';
 
 @Injectable()
 export class CitiesService {
-  private readonly validAdminTokenHeader = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9';
+  private readonly validAdminTokenHeader =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9';
 
   isAdminTokenValid(token: string): boolean {
     const tokenHeader = token.split('.')[0];
@@ -27,7 +28,14 @@ export class CitiesService {
   }
 
   async getCityImageStream(cityName: string) {
-    const imagePath = join(__dirname, '..', 'images', `${cityName}-bg.jpg`);
+    const imagePath = join(
+      __dirname,
+      '..',
+      '..',
+      'src',
+      'images',
+      `${cityName}-bg.jpg`,
+    );
 
     if (!existsSync(imagePath)) {
       throw new Error('Image not found');
