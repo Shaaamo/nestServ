@@ -5,7 +5,7 @@ import { JwtMiddleware } from './jwt.middleware';
 @Module({
   imports: [
     JwtModule.register({
-      secret: 'your-secret-key', // Using a dummy secret key since fake.api doesn't provide one
+      secret: 'your-secret-key',
       signOptions: { expiresIn: '1h' },
     }),
   ],

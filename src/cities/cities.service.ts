@@ -11,19 +11,18 @@ export class CitiesService {
       { name: 'London' },
       { name: 'Moscow' },
       { name: 'Warsaw' },
+      { name: 'Tokyo' },
+      { name: 'Sydney' }
     ];
   }
 
   getCityImageStream(cityName: string) {
-    // Using process.cwd() to get the project root, then navigate to src/images
-    const imagePath = join(process.cwd(), 'src', 'images', `${cityName.toLowerCase()}-bg.jpg`);
-    console.log('Looking for image at:', imagePath);
-    
-    if (!existsSync(imagePath)) {
-      console.log('Image not found at path:', imagePath);
-      return null;
-    }
-    console.log('Image found at path:', imagePath);
-    return createReadStream(imagePath);
+    const imagePath = join(
+      process.cwd(),
+      'src',
+      'images',
+      `${cityName.toLowerCase()}-bg.jpg`,
+    );
+    return existsSync(imagePath) ? createReadStream(imagePath) : null;
   }
 }
