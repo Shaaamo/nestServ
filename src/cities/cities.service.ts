@@ -5,41 +5,25 @@ import { existsSync } from 'fs';
 
 @Injectable()
 export class CitiesService {
-  private readonly validAdminTokenHeader =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9';
-
-  isAdminTokenValid(token: string): boolean {
-    const tokenHeader = token.split('.')[0];
-    return tokenHeader === this.validAdminTokenHeader;
-  }
-
   getPopularCities() {
     return [
       { name: 'Paris' },
       { name: 'London' },
       { name: 'Moscow' },
       { name: 'Warsaw' },
-      { name: 'Berlin' },
-      { name: 'Lisbon' },
-      { name: 'Rome' },
-      { name: 'Sydney' },
-      { name: 'Tokyo' },
     ];
   }
 
-  async getCityImageStream(cityName: string) {
-    const imagePath = join(
-      __dirname,
-      '..',
-      '..',
-      'src',
-      'images',
-      `${cityName}-bg.jpg`,
-    );
-
+  getCityImageStream(cityName: string) {
+    // Using process.cwd() to get the project root, then navigate to src/images
+    const imagePath = join(process.cwd(), 'src', 'images', `${cityName.toLowerCase()}-bg.jpg`);
+    console.log('Looking for image at:', imagePath);
+    
     if (!existsSync(imagePath)) {
-      throw new Error('Image not found');
+      console.log('Image not found at path:', imagePath);
+      return null;
     }
+    console.log('Image found at path:', imagePath);
     return createReadStream(imagePath);
   }
 }
