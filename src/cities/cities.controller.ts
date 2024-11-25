@@ -23,6 +23,7 @@ export class CitiesController {
       isAdmin: true,
       cities: this.citiesService.getPopularCities(),
     });
+
   }
 
   @Get(':cityName')
