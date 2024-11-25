@@ -1,4 +1,11 @@
-import { Controller, Get, Req, Res, HttpException, HttpStatus } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Req,
+  Res,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 import { CitiesService } from './cities.service';
 import { Request, Response } from 'express';
 
@@ -14,7 +21,7 @@ export class CitiesController {
 
     res.json({
       isAdmin: true,
-      cities: this.citiesService.getPopularCities()
+      cities: this.citiesService.getPopularCities(),
     });
   }
 
@@ -24,7 +31,9 @@ export class CitiesController {
       throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
     }
 
-    const imageStream = this.citiesService.getCityImageStream(req.params.cityName);
+    const imageStream = this.citiesService.getCityImageStream(
+      req.params.cityName,
+    );
     if (!imageStream) {
       throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
     }

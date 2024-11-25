@@ -12,7 +12,7 @@ export class CitiesService {
       { name: 'Moscow' },
       { name: 'Warsaw' },
       { name: 'Tokyo' },
-      { name: 'Sydney' }
+      { name: 'Sydney' },
     ];
   }
 

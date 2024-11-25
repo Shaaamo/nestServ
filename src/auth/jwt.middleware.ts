@@ -9,10 +9,11 @@ export class JwtMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
     const token = req.headers.authorization?.split(' ')[1];
     console.log(token);
-    
+
     if (token) {
       const decoded = this.jwtService.decode(token);
-      req['isAdmin'] = decoded && typeof decoded === 'object' && decoded.user === 'mor_2314';
+      req['isAdmin'] =
+        decoded && typeof decoded === 'object' && decoded.user === 'mor_2314';
     }
 
     next();

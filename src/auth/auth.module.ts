@@ -5,8 +5,8 @@ import { JwtMiddleware } from './jwt.middleware';
 @Module({
   imports: [
     JwtModule.register({
-      secret: 'your-secret-key',
-      signOptions: { expiresIn: '1h' },
+      secret: 'No-Key-blayt',
+      signOptions: { expiresIn: '11h' },
     }),
   ],
   providers: [JwtMiddleware],
